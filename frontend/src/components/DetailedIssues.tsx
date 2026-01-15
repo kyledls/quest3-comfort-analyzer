@@ -16,17 +16,17 @@ const severityColors = {
   low: 'bg-green-100 text-green-800 border-green-200',
 };
 
-const issueIcons: Record<string, string> = {
-  weight: '⚖️',
-  pressure_points: '🎯',
-  face_interface: '😷',
-  glasses_compatibility: '👓',
-  heat_sweating: '🌡️',
-  forehead_discomfort: '🤕',
-  strap_quality: '🔗',
-  fit_adjustment: '🔧',
-  long_session: '⏱️',
-  battery_weight: '🔋',
+const issueLabels: Record<string, string> = {
+  weight: 'WT',
+  pressure_points: 'PP',
+  face_interface: 'FI',
+  glasses_compatibility: 'GL',
+  heat_sweating: 'HT',
+  forehead_discomfort: 'FH',
+  strap_quality: 'SQ',
+  fit_adjustment: 'FA',
+  long_session: 'LS',
+  battery_weight: 'BW',
 };
 
 export function DetailedIssues({ onAccessoryClick }: DetailedIssuesProps) {
@@ -75,7 +75,9 @@ export function DetailedIssues({ onAccessoryClick }: DetailedIssuesProps) {
               className="w-full p-4 flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <div className="flex items-center gap-3">
-                <span className="text-2xl">{issueIcons[issue.issue_type] || '❓'}</span>
+                <span className="w-10 h-10 rounded-lg bg-quest-100 text-quest-700 flex items-center justify-center font-bold text-sm">
+                  {issueLabels[issue.issue_type] || '??'}
+                </span>
                 <div className="text-left">
                   <h3 className="font-semibold text-gray-900">{issue.title}</h3>
                   <p className="text-sm text-gray-600">{issue.stats.total} mentions</p>

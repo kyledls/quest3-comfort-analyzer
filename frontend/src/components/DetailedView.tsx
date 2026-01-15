@@ -13,12 +13,12 @@ export default function DetailedView({ accessory, onClose, getSentimentColor }: 
     return type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   }
 
-  function getSentimentEmoji(sentiment: number): string {
-    if (sentiment > 0.3) return '😊';
-    if (sentiment > 0.1) return '🙂';
-    if (sentiment > -0.1) return '😐';
-    if (sentiment > -0.3) return '😕';
-    return '😞';
+  function getSentimentLabel(sentiment: number): string {
+    if (sentiment > 0.3) return 'Excellent';
+    if (sentiment > 0.1) return 'Good';
+    if (sentiment > -0.1) return 'Neutral';
+    if (sentiment > -0.3) return 'Mixed';
+    return 'Poor';
   }
 
   return (
@@ -57,8 +57,8 @@ export default function DetailedView({ accessory, onClose, getSentimentColor }: 
             <p className="text-sm text-gray-500">Sentiment Score</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl">
-              {getSentimentEmoji(accessory.avg_sentiment)}
+            <p className={`text-xl font-semibold ${getSentimentColor(accessory.avg_sentiment)}`}>
+              {getSentimentLabel(accessory.avg_sentiment)}
             </p>
             <p className="text-sm text-gray-500">Overall Rating</p>
           </div>
