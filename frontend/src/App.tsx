@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { 
   Activity, Award, AlertTriangle, Database,
-  TrendingUp, ChevronRight, Search, X
+  TrendingUp, Search, X
 } from 'lucide-react';
 import { api, DashboardStats, AccessoryRanking, ComfortIssue, SourceDistribution, AccessoryDetail } from './api';
 import AccessoryRankings from './components/AccessoryRankings';
