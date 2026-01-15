@@ -110,3 +110,4 @@ npm run dev
 ## License
 
 MIT
+# quest3-comfort-analyzer
