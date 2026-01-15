@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-50 text-gray-900;
+}
+
+.sentiment-positive {
+  @apply text-green-600;
+}
+
+.sentiment-negative {
+  @apply text-red-600;
+}
+
+.sentiment-neutral {
+  @apply text-gray-600;
+}
