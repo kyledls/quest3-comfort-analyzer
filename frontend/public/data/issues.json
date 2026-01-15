@@ -1,0 +1,62 @@
+[
+  {
+    "issue_type": "pressure_points",
+    "count": 3408,
+    "severity": null,
+    "display_name": "Pressure Points"
+  },
+  {
+    "issue_type": "weight",
+    "count": 3134,
+    "severity": null,
+    "display_name": "Weight"
+  },
+  {
+    "issue_type": "glasses_compatibility",
+    "count": 2994,
+    "severity": null,
+    "display_name": "Glasses Compatibility"
+  },
+  {
+    "issue_type": "face_interface",
+    "count": 2929,
+    "severity": null,
+    "display_name": "Face Interface"
+  },
+  {
+    "issue_type": "heat_sweating",
+    "count": 2307,
+    "severity": null,
+    "display_name": "Heat Sweating"
+  },
+  {
+    "issue_type": "forehead_discomfort",
+    "count": 776,
+    "severity": null,
+    "display_name": "Forehead Discomfort"
+  },
+  {
+    "issue_type": "fit_adjustment",
+    "count": 680,
+    "severity": null,
+    "display_name": "Fit Adjustment"
+  },
+  {
+    "issue_type": "long_session",
+    "count": 657,
+    "severity": null,
+    "display_name": "Long Session"
+  },
+  {
+    "issue_type": "battery_weight",
+    "count": 606,
+    "severity": null,
+    "display_name": "Battery Weight"
+  },
+  {
+    "issue_type": "strap_quality",
+    "count": 381,
+    "severity": null,
+    "display_name": "Strap Quality"
+  }
+]

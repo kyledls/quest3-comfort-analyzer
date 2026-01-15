@@ -1,0 +1,452 @@
+[
+  {
+    "accessory_name": "VR Optician Prescription Lenses",
+    "accessory_type": "lens",
+    "mention_count": 31,
+    "avg_sentiment": 0.631,
+    "positive_mentions": 27,
+    "negative_mentions": 4,
+    "recommendation_score": 0.902
+  },
+  {
+    "accessory_name": "Kiwi Controller Grips",
+    "accessory_type": "controller",
+    "mention_count": 49,
+    "avg_sentiment": 0.513,
+    "positive_mentions": 39,
+    "negative_mentions": 6,
+    "recommendation_score": 0.864
+  },
+  {
+    "accessory_name": "Aubika Head Strap",
+    "accessory_type": "head_strap",
+    "mention_count": 3,
+    "avg_sentiment": 0.5,
+    "positive_mentions": 3,
+    "negative_mentions": 0,
+    "recommendation_score": 0.72
+  },
+  {
+    "accessory_name": "ZenGuard Lens Protector",
+    "accessory_type": "lens",
+    "mention_count": 158,
+    "avg_sentiment": 0.354,
+    "positive_mentions": 98,
+    "negative_mentions": 12,
+    "recommendation_score": 0.83
+  },
+  {
+    "accessory_name": "VR Optician",
+    "accessory_type": "lens",
+    "mention_count": 189,
+    "avg_sentiment": 0.292,
+    "positive_mentions": 116,
+    "negative_mentions": 25,
+    "recommendation_score": 0.818
+  },
+  {
+    "accessory_name": "AMVR Head Strap",
+    "accessory_type": "head_strap",
+    "mention_count": 204,
+    "avg_sentiment": 0.289,
+    "positive_mentions": 136,
+    "negative_mentions": 17,
+    "recommendation_score": 0.845
+  },
+  {
+    "accessory_name": "BoboVR M3 Battery",
+    "accessory_type": "battery",
+    "mention_count": 14,
+    "avg_sentiment": 0.286,
+    "positive_mentions": 8,
+    "negative_mentions": 0,
+    "recommendation_score": 0.578
+  },
+  {
+    "accessory_name": "Silicone Grips",
+    "accessory_type": "controller",
+    "mention_count": 8,
+    "avg_sentiment": 0.275,
+    "positive_mentions": 4,
+    "negative_mentions": 0,
+    "recommendation_score": 0.501
+  },
+  {
+    "accessory_name": "Silicone Face Cover",
+    "accessory_type": "face_cover",
+    "mention_count": 283,
+    "avg_sentiment": 0.275,
+    "positive_mentions": 168,
+    "negative_mentions": 24,
+    "recommendation_score": 0.838
+  },
+  {
+    "accessory_name": "Reloptix",
+    "accessory_type": "lens",
+    "mention_count": 30,
+    "avg_sentiment": 0.265,
+    "positive_mentions": 17,
+    "negative_mentions": 4,
+    "recommendation_score": 0.631
+  },
+  {
+    "accessory_name": "AMVR Face Cover",
+    "accessory_type": "face_cover",
+    "mention_count": 299,
+    "avg_sentiment": 0.264,
+    "positive_mentions": 182,
+    "negative_mentions": 21,
+    "recommendation_score": 0.845
+  },
+  {
+    "accessory_name": "DESTEK Head Strap",
+    "accessory_type": "head_strap",
+    "mention_count": 23,
+    "avg_sentiment": 0.262,
+    "positive_mentions": 18,
+    "negative_mentions": 1,
+    "recommendation_score": 0.694
+  },
+  {
+    "accessory_name": "Kiwi Face Interface",
+    "accessory_type": "face_cover",
+    "mention_count": 24,
+    "avg_sentiment": 0.248,
+    "positive_mentions": 14,
+    "negative_mentions": 0,
+    "recommendation_score": 0.612
+  },
+  {
+    "accessory_name": "Lens Protector",
+    "accessory_type": "lens",
+    "mention_count": 189,
+    "avg_sentiment": 0.245,
+    "positive_mentions": 87,
+    "negative_mentions": 8,
+    "recommendation_score": 0.738
+  },
+  {
+    "accessory_name": "VR Cover",
+    "accessory_type": "face_cover",
+    "mention_count": 434,
+    "avg_sentiment": 0.227,
+    "positive_mentions": 231,
+    "negative_mentions": 52,
+    "recommendation_score": 0.831
+  },
+  {
+    "accessory_name": "Controller Grips",
+    "accessory_type": "controller",
+    "mention_count": 702,
+    "avg_sentiment": 0.226,
+    "positive_mentions": 377,
+    "negative_mentions": 20,
+    "recommendation_score": 0.875
+  },
+  {
+    "accessory_name": "Kiwi Design",
+    "accessory_type": "head_strap",
+    "mention_count": 390,
+    "avg_sentiment": 0.225,
+    "positive_mentions": 200,
+    "negative_mentions": 20,
+    "recommendation_score": 0.814
+  },
+  {
+    "accessory_name": "BoboVR Battery Pack",
+    "accessory_type": "battery",
+    "mention_count": 308,
+    "avg_sentiment": 0.223,
+    "positive_mentions": 131,
+    "negative_mentions": 22,
+    "recommendation_score": 0.757
+  },
+  {
+    "accessory_name": "VR Wave",
+    "accessory_type": "lens",
+    "mention_count": 14,
+    "avg_sentiment": 0.21,
+    "positive_mentions": 8,
+    "negative_mentions": 0,
+    "recommendation_score": 0.548
+  },
+  {
+    "accessory_name": "Hand Straps",
+    "accessory_type": "controller",
+    "mention_count": 25,
+    "avg_sentiment": 0.197,
+    "positive_mentions": 11,
+    "negative_mentions": 2,
+    "recommendation_score": 0.538
+  },
+  {
+    "accessory_name": "Power Adapter",
+    "accessory_type": "other",
+    "mention_count": 8,
+    "avg_sentiment": 0.195,
+    "positive_mentions": 6,
+    "negative_mentions": 0,
+    "recommendation_score": 0.569
+  },
+  {
+    "accessory_name": "Kiwi Design Elite Strap",
+    "accessory_type": "head_strap",
+    "mention_count": 286,
+    "avg_sentiment": 0.193,
+    "positive_mentions": 137,
+    "negative_mentions": 25,
+    "recommendation_score": 0.76
+  },
+  {
+    "accessory_name": "AMVR Face Interface",
+    "accessory_type": "face_cover",
+    "mention_count": 68,
+    "avg_sentiment": 0.185,
+    "positive_mentions": 34,
+    "negative_mentions": 0,
+    "recommendation_score": 0.642
+  },
+  {
+    "accessory_name": "PU Leather Face Cover",
+    "accessory_type": "face_cover",
+    "mention_count": 84,
+    "avg_sentiment": 0.179,
+    "positive_mentions": 45,
+    "negative_mentions": 0,
+    "recommendation_score": 0.672
+  },
+  {
+    "accessory_name": "Cable Management",
+    "accessory_type": "other",
+    "mention_count": 12,
+    "avg_sentiment": 0.176,
+    "positive_mentions": 6,
+    "negative_mentions": 2,
+    "recommendation_score": 0.493
+  },
+  {
+    "accessory_name": "Prescription Lens Insert",
+    "accessory_type": "lens",
+    "mention_count": 1009,
+    "avg_sentiment": 0.165,
+    "positive_mentions": 469,
+    "negative_mentions": 117,
+    "recommendation_score": 0.853
+  },
+  {
+    "accessory_name": "BoboVR M3 Pro",
+    "accessory_type": "head_strap",
+    "mention_count": 3036,
+    "avg_sentiment": 0.159,
+    "positive_mentions": 1208,
+    "negative_mentions": 170,
+    "recommendation_score": 0.919
+  },
+  {
+    "accessory_name": "Halo Strap",
+    "accessory_type": "head_strap",
+    "mention_count": 580,
+    "avg_sentiment": 0.158,
+    "positive_mentions": 298,
+    "negative_mentions": 43,
+    "recommendation_score": 0.822
+  },
+  {
+    "accessory_name": "Cooling Fan",
+    "accessory_type": "other",
+    "mention_count": 865,
+    "avg_sentiment": 0.155,
+    "positive_mentions": 487,
+    "negative_mentions": 84,
+    "recommendation_score": 0.875
+  },
+  {
+    "accessory_name": "Globular Cluster Strap",
+    "accessory_type": "head_strap",
+    "mention_count": 233,
+    "avg_sentiment": 0.148,
+    "positive_mentions": 108,
+    "negative_mentions": 15,
+    "recommendation_score": 0.719
+  },
+  {
+    "accessory_name": "AMVR Controller Grips",
+    "accessory_type": "controller",
+    "mention_count": 14,
+    "avg_sentiment": 0.13,
+    "positive_mentions": 6,
+    "negative_mentions": 0,
+    "recommendation_score": 0.459
+  },
+  {
+    "accessory_name": "Rebuff Reality VR Power",
+    "accessory_type": "battery",
+    "mention_count": 8,
+    "avg_sentiment": 0.128,
+    "positive_mentions": 4,
+    "negative_mentions": 0,
+    "recommendation_score": 0.442
+  },
+  {
+    "accessory_name": "Knuckle Straps",
+    "accessory_type": "controller",
+    "mention_count": 58,
+    "avg_sentiment": 0.127,
+    "positive_mentions": 31,
+    "negative_mentions": 4,
+    "recommendation_score": 0.619
+  },
+  {
+    "accessory_name": "Controller Cover",
+    "accessory_type": "controller",
+    "mention_count": 22,
+    "avg_sentiment": 0.125,
+    "positive_mentions": 8,
+    "negative_mentions": 2,
+    "recommendation_score": 0.468
+  },
+  {
+    "accessory_name": "VR Panda",
+    "accessory_type": "face_cover",
+    "mention_count": 28,
+    "avg_sentiment": 0.124,
+    "positive_mentions": 10,
+    "negative_mentions": 0,
+    "recommendation_score": 0.485
+  },
+  {
+    "accessory_name": "Battery Strap",
+    "accessory_type": "battery",
+    "mention_count": 982,
+    "avg_sentiment": 0.117,
+    "positive_mentions": 403,
+    "negative_mentions": 84,
+    "recommendation_score": 0.809
+  },
+  {
+    "accessory_name": "Counterweight",
+    "accessory_type": "other",
+    "mention_count": 362,
+    "avg_sentiment": 0.116,
+    "positive_mentions": 160,
+    "negative_mentions": 52,
+    "recommendation_score": 0.735
+  },
+  {
+    "accessory_name": "Anker Power Bank",
+    "accessory_type": "battery",
+    "mention_count": 127,
+    "avg_sentiment": 0.114,
+    "positive_mentions": 44,
+    "negative_mentions": 24,
+    "recommendation_score": 0.606
+  },
+  {
+    "accessory_name": "Kiwi Battery Pack",
+    "accessory_type": "battery",
+    "mention_count": 61,
+    "avg_sentiment": 0.113,
+    "positive_mentions": 30,
+    "negative_mentions": 8,
+    "recommendation_score": 0.6
+  },
+  {
+    "accessory_name": "Meta Elite Battery Strap",
+    "accessory_type": "battery",
+    "mention_count": 680,
+    "avg_sentiment": 0.111,
+    "positive_mentions": 273,
+    "negative_mentions": 54,
+    "recommendation_score": 0.772
+  },
+  {
+    "accessory_name": "Meta Elite Strap",
+    "accessory_type": "head_strap",
+    "mention_count": 2797,
+    "avg_sentiment": 0.109,
+    "positive_mentions": 932,
+    "negative_mentions": 276,
+    "recommendation_score": 0.866
+  },
+  {
+    "accessory_name": "Power Bank",
+    "accessory_type": "battery",
+    "mention_count": 251,
+    "avg_sentiment": 0.093,
+    "positive_mentions": 93,
+    "negative_mentions": 42,
+    "recommendation_score": 0.666
+  },
+  {
+    "accessory_name": "Carrying Case",
+    "accessory_type": "other",
+    "mention_count": 60,
+    "avg_sentiment": 0.089,
+    "positive_mentions": 17,
+    "negative_mentions": 8,
+    "recommendation_score": 0.506
+  },
+  {
+    "accessory_name": "HonsVR",
+    "accessory_type": "lens",
+    "mention_count": 51,
+    "avg_sentiment": 0.06,
+    "positive_mentions": 18,
+    "negative_mentions": 6,
+    "recommendation_score": 0.508
+  },
+  {
+    "accessory_name": "Widmo Lenses",
+    "accessory_type": "lens",
+    "mention_count": 16,
+    "avg_sentiment": 0.031,
+    "positive_mentions": 2,
+    "negative_mentions": 2,
+    "recommendation_score": 0.308
+  },
+  {
+    "accessory_name": "Travel Case",
+    "accessory_type": "other",
+    "mention_count": 25,
+    "avg_sentiment": 0.025,
+    "positive_mentions": 12,
+    "negative_mentions": 9,
+    "recommendation_score": 0.485
+  },
+  {
+    "accessory_name": "VR Power",
+    "accessory_type": "battery",
+    "mention_count": 28,
+    "avg_sentiment": 0.011,
+    "positive_mentions": 8,
+    "negative_mentions": 7,
+    "recommendation_score": 0.411
+  },
+  {
+    "accessory_name": "VR Lens Lab",
+    "accessory_type": "lens",
+    "mention_count": 4,
+    "avg_sentiment": -0.016,
+    "positive_mentions": 0,
+    "negative_mentions": 0,
+    "recommendation_score": 0.134
+  },
+  {
+    "accessory_name": "Hard Case",
+    "accessory_type": "other",
+    "mention_count": 21,
+    "avg_sentiment": -0.066,
+    "positive_mentions": 2,
+    "negative_mentions": 11,
+    "recommendation_score": 0.28
+  },
+  {
+    "accessory_name": "Pulley System",
+    "accessory_type": "other",
+    "mention_count": 9,
+    "avg_sentiment": -0.074,
+    "positive_mentions": 0,
+    "negative_mentions": 2,
+    "recommendation_score": 0.17
+  }
+]

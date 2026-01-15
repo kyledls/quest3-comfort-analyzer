@@ -1,8 +1,9 @@
 /**
- * API client for Quest 3 Comfort Analyzer backend
+ * API client for Quest 3 Comfort Analyzer
+ * Uses static JSON files for deployment
  */
 
-const API_BASE = '/api';
+const DATA_BASE = '/data';
 
 export interface DashboardStats {
   total_reviews: number;
@@ -84,51 +85,134 @@ export interface DetailedIssue {
   }>;
 }
 
-async function fetchAPI<T>(endpoint: string): Promise<T> {
-  const response = await fetch(`${API_BASE}${endpoint}`);
+async function fetchJSON<T>(filename: string): Promise<T> {
+  const response = await fetch(`${DATA_BASE}/${filename}`);
   if (!response.ok) {
-    throw new Error(`API error: ${response.status}`);
+    throw new Error(`Failed to load ${filename}: ${response.status}`);
   }
   return response.json();
 }
 
+// Cache for loaded data
+let statsCache: DashboardStats | null = null;
+let rankingsCache: AccessoryRanking[] | null = null;
+let issuesCache: ComfortIssue[] | null = null;
+let sourcesCache: SourceDistribution[] | null = null;
+
 export const api = {
-  getStats: () => fetchAPI<DashboardStats>('/stats'),
-  
-  getRankings: (params?: { accessory_type?: string; min_mentions?: number; sort_by?: string }) => {
-    const searchParams = new URLSearchParams();
-    if (params?.accessory_type) searchParams.set('accessory_type', params.accessory_type);
-    if (params?.min_mentions) searchParams.set('min_mentions', params.min_mentions.toString());
-    if (params?.sort_by) searchParams.set('sort_by', params.sort_by);
-    const query = searchParams.toString();
-    return fetchAPI<AccessoryRanking[]>(`/rankings${query ? `?${query}` : ''}`);
+  getStats: async () => {
+    if (!statsCache) {
+      statsCache = await fetchJSON<DashboardStats>('stats.json');
+    }
+    return statsCache;
   },
   
-  getIssues: (severity?: string) => {
-    const query = severity ? `?severity=${severity}` : '';
-    return fetchAPI<ComfortIssue[]>(`/issues${query}`);
+  getRankings: async (params?: { accessory_type?: string; min_mentions?: number; sort_by?: string }) => {
+    if (!rankingsCache) {
+      rankingsCache = await fetchJSON<AccessoryRanking[]>('rankings.json');
+    }
+    let results = [...rankingsCache];
+    
+    // Apply filters
+    if (params?.accessory_type) {
+      results = results.filter(r => r.accessory_type === params.accessory_type);
+    }
+    if (params?.min_mentions) {
+      results = results.filter(r => r.mention_count >= params.min_mentions!);
+    }
+    if (params?.sort_by === 'mentions') {
+      results.sort((a, b) => b.mention_count - a.mention_count);
+    } else if (params?.sort_by === 'positive') {
+      results.sort((a, b) => b.positive_mentions - a.positive_mentions);
+    }
+    
+    return results;
   },
   
-  getIssuesBySeverity: () => fetchAPI<ComfortIssue[]>('/issues/by-severity'),
+  getIssues: async (severity?: string) => {
+    if (!issuesCache) {
+      issuesCache = await fetchJSON<ComfortIssue[]>('issues.json');
+    }
+    if (severity) {
+      return issuesCache.filter(i => i.severity === severity);
+    }
+    return issuesCache;
+  },
   
-  getDetailedIssues: () => fetchAPI<DetailedIssue[]>('/issues/detailed'),
+  getIssuesBySeverity: async () => {
+    // Return empty for static version
+    return [] as ComfortIssue[];
+  },
   
-  getSources: () => fetchAPI<SourceDistribution[]>('/sources'),
+  getDetailedIssues: async () => {
+    // Return empty for static version
+    return [] as DetailedIssue[];
+  },
   
-  getAccessoryDetail: (name: string) => 
-    fetchAPI<AccessoryDetail>(`/accessory/${encodeURIComponent(name)}`),
+  getSources: async () => {
+    if (!sourcesCache) {
+      sourcesCache = await fetchJSON<SourceDistribution[]>('sources.json');
+    }
+    return sourcesCache;
+  },
   
-  getSolutions: () => fetchAPI<IssueSolution[]>('/solutions'),
+  getAccessoryDetail: async (name: string): Promise<AccessoryDetail> => {
+    if (!rankingsCache) {
+      rankingsCache = await fetchJSON<AccessoryRanking[]>('rankings.json');
+    }
+    const ranking = rankingsCache.find(r => r.accessory_name === name);
+    if (!ranking) {
+      throw new Error(`Accessory '${name}' not found`);
+    }
+    return {
+      accessory_name: ranking.accessory_name,
+      accessory_type: ranking.accessory_type,
+      mention_count: ranking.mention_count,
+      avg_sentiment: ranking.avg_sentiment,
+      mentions: [],
+      pros: [],
+      cons: []
+    };
+  },
   
-  getAccessoryTypes: () => fetchAPI<Array<{
-    type: string;
-    display_name: string;
-    unique_accessories: number;
-    total_mentions: number;
-  }>>('/accessory-types'),
+  getSolutions: async () => {
+    // Return empty for static version
+    return [] as IssueSolution[];
+  },
   
-  search: (query: string, limit = 10) => 
-    fetchAPI<Array<{ name: string; type: string; mentions: number; sentiment: number }>>(
-      `/search?q=${encodeURIComponent(query)}&limit=${limit}`
-    ),
+  getAccessoryTypes: async () => {
+    if (!rankingsCache) {
+      rankingsCache = await fetchJSON<AccessoryRanking[]>('rankings.json');
+    }
+    const typeMap = new Map<string, { count: number; mentions: number }>();
+    for (const r of rankingsCache) {
+      const existing = typeMap.get(r.accessory_type) || { count: 0, mentions: 0 };
+      typeMap.set(r.accessory_type, {
+        count: existing.count + 1,
+        mentions: existing.mentions + r.mention_count
+      });
+    }
+    return Array.from(typeMap.entries()).map(([type, data]) => ({
+      type,
+      display_name: type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      unique_accessories: data.count,
+      total_mentions: data.mentions
+    })).sort((a, b) => b.total_mentions - a.total_mentions);
+  },
+  
+  search: async (query: string, limit = 10) => {
+    if (!rankingsCache) {
+      rankingsCache = await fetchJSON<AccessoryRanking[]>('rankings.json');
+    }
+    const q = query.toLowerCase();
+    return rankingsCache
+      .filter(r => r.accessory_name.toLowerCase().includes(q))
+      .slice(0, limit)
+      .map(r => ({
+        name: r.accessory_name,
+        type: r.accessory_type,
+        mentions: r.mention_count,
+        sentiment: r.avg_sentiment
+      }));
+  },
 };
