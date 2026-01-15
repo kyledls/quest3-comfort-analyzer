@@ -85,6 +85,78 @@ export interface DetailedIssue {
   }>;
 }
 
+interface IssueDetailedData {
+  total: number;
+  high: number;
+  medium: number;
+  low: number;
+  examples: Array<{ quote: string; title: string; source: string }>;
+}
+
+// Issue descriptions
+const ISSUE_DESCRIPTIONS: Record<string, { title: string; description: string; causes: string[]; symptoms: string[] }> = {
+  weight: {
+    title: "Weight Distribution Issues",
+    description: "The Quest 3 is front-heavy due to the display and battery being located in the front.",
+    causes: ["Front-heavy design", "Battery in front housing", "Inadequate counterbalance"],
+    symptoms: ["Neck pain", "Fatigue after 20-30 minutes", "Headset sliding down"]
+  },
+  pressure_points: {
+    title: "Pressure Points",
+    description: "The stock face interface creates concentrated pressure on specific areas of the face.",
+    causes: ["Hard foam padding", "Poor weight distribution", "One-size-fits-all design"],
+    symptoms: ["Red marks on face", "Pain after short sessions", "Numbness in pressure areas"]
+  },
+  face_interface: {
+    title: "Face Interface Problems",
+    description: "The stock foam face cover has issues with light leakage, comfort, and fit.",
+    causes: ["Cheap foam material", "Poor seal around nose", "Sweat absorption issues"],
+    symptoms: ["Light leaking in", "Uncomfortable fit", "Hygiene concerns"]
+  },
+  glasses_compatibility: {
+    title: "Glasses Compatibility",
+    description: "Wearing glasses inside the Quest 3 is problematic.",
+    causes: ["Limited space for glasses", "Risk of lens scratching", "Additional pressure on nose"],
+    symptoms: ["Glasses don't fit", "Scratched VR lenses", "Extra discomfort"]
+  },
+  heat_sweating: {
+    title: "Heat & Sweating Issues",
+    description: "The enclosed design traps heat during active games.",
+    causes: ["Enclosed design", "Processor heat", "Active gameplay", "Poor ventilation"],
+    symptoms: ["Excessive sweating", "Fogged lenses", "Overheating warnings"]
+  },
+  forehead_discomfort: {
+    title: "Forehead Discomfort",
+    description: "Many users experience pain and soreness on the forehead.",
+    causes: ["Stock strap design", "Weight concentrated on forehead", "Hard contact surface"],
+    symptoms: ["Forehead pain", "Headaches", "Soreness lasting hours"]
+  },
+  strap_quality: {
+    title: "Strap Quality Issues",
+    description: "The stock strap is flimsy and inadequate.",
+    causes: ["Cheap materials", "Poor manufacturing QC", "Stress points in design"],
+    symptoms: ["Strap breakage", "Loose fit", "Frequent readjustment needed"]
+  },
+  fit_adjustment: {
+    title: "Fit & Adjustment Difficulties",
+    description: "Getting the headset properly positioned can be frustrating.",
+    causes: ["Complex adjustment system", "Strap slippage", "Different head shapes"],
+    symptoms: ["Constant readjustment", "Never feels 'right'", "Slipping during movement"]
+  },
+  long_session: {
+    title: "Long Session Fatigue",
+    description: "Extended VR sessions become uncomfortable due to cumulative discomfort.",
+    causes: ["Combination of all issues", "Weight fatigue", "Heat buildup over time"],
+    symptoms: ["Can't play over 30-60 min", "Increasing discomfort", "Need frequent breaks"]
+  },
+  battery_weight: {
+    title: "Battery & Counterweight",
+    description: "Adding battery weight to the back improves comfort by counterbalancing.",
+    causes: ["Front-heavy default design", "Need for better balance"],
+    symptoms: ["Actually helps comfort", "Improved weight distribution"]
+  }
+};
+
 async function fetchJSON<T>(filename: string): Promise<T> {
   const response = await fetch(`${DATA_BASE}/${filename}`);
   if (!response.ok) {
@@ -98,6 +170,8 @@ let statsCache: DashboardStats | null = null;
 let rankingsCache: AccessoryRanking[] | null = null;
 let issuesCache: ComfortIssue[] | null = null;
 let sourcesCache: SourceDistribution[] | null = null;
+let accessoriesDetailedCache: Record<string, AccessoryDetail> | null = null;
+let issuesDetailedCache: Record<string, IssueDetailedData> | null = null;
 
 export const api = {
   getStats: async () => {
@@ -140,13 +214,51 @@ export const api = {
   },
   
   getIssuesBySeverity: async () => {
-    // Return empty for static version
-    return [] as ComfortIssue[];
+    if (!issuesDetailedCache) {
+      issuesDetailedCache = await fetchJSON<Record<string, IssueDetailedData>>('issues_detailed.json');
+    }
+    const severityCounts = { high: 0, medium: 0, low: 0 };
+    for (const data of Object.values(issuesDetailedCache)) {
+      severityCounts.high += data.high;
+      severityCounts.medium += data.medium;
+      severityCounts.low += data.low;
+    }
+    return [
+      { issue_type: 'high', count: severityCounts.high, severity: 'high', display_name: 'High' },
+      { issue_type: 'medium', count: severityCounts.medium, severity: 'medium', display_name: 'Medium' },
+      { issue_type: 'low', count: severityCounts.low, severity: 'low', display_name: 'Low' },
+    ] as ComfortIssue[];
   },
   
-  getDetailedIssues: async () => {
-    // Return empty for static version
-    return [] as DetailedIssue[];
+  getDetailedIssues: async (): Promise<DetailedIssue[]> => {
+    if (!issuesDetailedCache) {
+      issuesDetailedCache = await fetchJSON<Record<string, IssueDetailedData>>('issues_detailed.json');
+    }
+    
+    return Object.entries(issuesDetailedCache).map(([issueType, data]) => {
+      const desc = ISSUE_DESCRIPTIONS[issueType] || {
+        title: issueType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        description: `Issues related to ${issueType.replace(/_/g, ' ')}`,
+        causes: [],
+        symptoms: []
+      };
+      
+      return {
+        issue_type: issueType,
+        title: desc.title,
+        description: desc.description,
+        causes: desc.causes,
+        symptoms: desc.symptoms,
+        stats: {
+          total: data.total,
+          high_severity: data.high,
+          medium_severity: data.medium,
+          low_severity: data.low
+        },
+        example_complaints: data.examples,
+        recommended_solutions: []
+      };
+    }).sort((a, b) => b.stats.total - a.stats.total);
   },
   
   getSources: async () => {
@@ -157,22 +269,14 @@ export const api = {
   },
   
   getAccessoryDetail: async (name: string): Promise<AccessoryDetail> => {
-    if (!rankingsCache) {
-      rankingsCache = await fetchJSON<AccessoryRanking[]>('rankings.json');
+    if (!accessoriesDetailedCache) {
+      accessoriesDetailedCache = await fetchJSON<Record<string, AccessoryDetail>>('accessories_detailed.json');
     }
-    const ranking = rankingsCache.find(r => r.accessory_name === name);
-    if (!ranking) {
+    const detail = accessoriesDetailedCache[name];
+    if (!detail) {
       throw new Error(`Accessory '${name}' not found`);
     }
-    return {
-      accessory_name: ranking.accessory_name,
-      accessory_type: ranking.accessory_type,
-      mention_count: ranking.mention_count,
-      avg_sentiment: ranking.avg_sentiment,
-      mentions: [],
-      pros: [],
-      cons: []
-    };
+    return detail;
   },
   
   getSolutions: async () => {
